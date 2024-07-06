@@ -1,16 +1,20 @@
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import React, { useEffect } from 'react';
+import Layout from './components/Layout';
+import { fetchDataAndStore } from './utils/dataStorage';
+import { StoreProvider } from './context/GlobalContext';
+import Routes from './Routes';
+import { BrowserRoouter as Router } from 'react-rouonter-dom';
 
-export const Home = () => {
+const App = () => {
+  useEffect(() => {
+    fetchDataAndStore();
+  }, []);
 
-  const {store, dispatch} =useGlobalReducer()
+  return (
+    <StoreProvider>
+      <Layout />
+    </StoreProvider>
+  );
+};
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-		</div>
-	);
-}; 
+export default App;
