@@ -1,19 +1,19 @@
-
-import { useContext, useReducer, createContext } from "react";
-import storeReducer, { initialStore } from "../store";  // Import the reducer and the initial state.
+import React, { createContext, useReducer, useContext } from 'react';
+import storeReducer from '../pages/store';
 
 const StoreContext = createContext();
 
-export function StoreProvider({ children }) {
-    const [store, dispatch] = useReducer(storeReducer, initialStore());
-    return (
-        <StoreContext.Provider value={{ store, dispatch }}>
-            {children}
-        </StoreContext.Provider>
-    );
-}
+export const StoreProvider = ({ children }) => {
+  const [store, dispatch] = useReducer(storeReducer, initialStore());
 
-export default function useGlobalReducer() {
-    const { dispatch, store } = useContext(StoreContext);
-    return { dispatch, store };
-}
+  return (
+    <StoreContext.Provider value={{ store, dispatch }}>
+      {children}
+    </StoreContext.Provider>
+  );
+};
+
+export const useGlobalReducer = () => {
+  const { store, dispatch } = useContext(StoreContext);
+  return { store, dispatch };
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Details from './Details';
+import Details from '../details';
 import Favorites from './Favorites';
 
 const Layout = () => (
@@ -11,9 +11,9 @@ const Layout = () => (
       </header>
       <main>
         <Switch>
-          <Route path="/" exact component={Details} />
+          <Route Details />
           <Route path="/favorites" component={Favorites} />
-          <Route path="/details/:entityType/:uid" component={Details} />
+          <Route Details />
         </Switch>
       </main>
       <footer>
